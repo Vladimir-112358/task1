@@ -1,0 +1,29 @@
+<!--<div class="container">-->
+<!--  <h1>Страница авторизации</h1>-->
+<!--  <div class="form-group">-->
+<!--    <label for="userLogin">Логин</label>-->
+<!--    <input type="text" id="userLogin" name="userLogin" [(ngModel)]="userLogin" class="form-control">-->
+<!--    <label for="password">Пароль</label>-->
+<!--    <input type="password" id="password" name="password" [(ngModel)]="password" class="form-control">-->
+<!--  </div>-->
+<!--  <button (click)="authorization()" class="btn btn-primary">Войти</button>-->
+<!--  <p>{{message}}</p>-->
+<!--</div>-->
+
+<div class="container">
+  <h1>REVIZOR</h1>
+  <form [formGroup]="authForm" (ngSubmit)="authorization()" class="modalView">
+    <div class="form-group">
+      <div class="form-login">
+        <label for="userLogin">Логин</label>
+        <input type="text" id="userLogin" formControlName="userLogin" class="form-control-1">
+      </div>
+      <div class="form-password">
+        <label for="password">Пароль</label>
+        <input type="password" id="password" formControlName="password" class="form-control">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Войти</button>
+  </form>
+  <p *ngIf="message">{{message}}</p>
+</div>
