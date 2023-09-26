@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     this.authForm = new FormGroup<any>({
       userLogin: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required)
+
     })
   }
 
@@ -31,9 +32,20 @@ export class LoginComponent implements OnInit {
     this.message = ''; // инициализируем сообщение с пустым значением
   }
 
+  //Добавление валидации
+  
+
   authorization() {
+
+    
     const userLogin = this.authForm.get('userLogin').value;
     const password = this.authForm.get('password').value;
+
+    if(this.authForm.get('password').value.length <5 || this.authForm.get('password').value.length > 30){
+        this.message = "Длина пароля должна быть в диапазоне от 5 до 30 символов"
+    }
+
+    
     // вызываем метод login из сервиса AuthService, передавая логин и пароль пользователя
     this.authService.login(userLogin, password).subscribe(
       ( data: any ) => {
@@ -53,7 +65,8 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         // если сервер вернул ошибку, то выводим ее сообщение
-        this.message = 'ошибка' + error.message;
+        //this.message = 'ошибка' + error.message;
+        alert(error.message)
       }
     );
   }
